@@ -1,0 +1,65 @@
+
+<html>
+<head>
+<script type="text/javascript">
+
+var Options1=[];
+Options1['0']=[['Please select one of the options above first','na']];
+ Options1['100']=[["month","month"],["month","month"],["weak","weak"],["day","day"]];
+
+var Options2=[];
+Options2['100']=[["month","month"],["weak","weak"],["day","day"],["day","day"]];
+
+
+var Options3=[];
+ Options3['month']=[['5000','5000']];
+  Options3['weak']=[['1100','1100']];
+  Options3['day']=[['150','150']];
+
+function setOptions(s,t,a){
+ var frm=s.form,chosen=s.value,selbox=frm[t];
+ if (selbox){
+  selbox.options.length = 0;
+  if (a[chosen]){
+   a=a[chosen];
+   for (var z0=0;z0<a.length;z0++){
+    selbox.options[z0] = new Option(a[z0][0],a[z0][1]);
+   }
+  }
+ }
+
+
+}
+
+</script>
+</head>
+<body>
+
+<form name="year" id="exm1" action="/Borde/" method="post">
+    {% csrf_token %}
+
+
+<table width="100%" border="12" align="right">
+ <tr>
+<td>
+<select name="year" size="1" onchange="setOptions(this,'month',Options1);setOptions(this,'village',Options2);">
+<option value="0" selected="selected">Room Numbers</option>
+<option value="100">100</option>
+
+
+</select></td>
+
+<td><select name="month" size="1" onchange="setOptions(this,'village',Options3);">
+<option value=" " selected="selected">Month&Weak&Day Ammount</option>
+</select></td>
+
+<td><select name="village" size="1">
+    <option>--Select--</option>
+</select>
+</table>
+
+
+</form>
+
+</body>
+</html>
